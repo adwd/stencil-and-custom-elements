@@ -1,11 +1,19 @@
 import { Component } from '@stencil/core';
 
-
 @Component({
   tag: 'app-root',
-  styleUrl: 'app-root.css'
+  styleUrl: 'app-root.css',
+  shadow: true,
 })
 export class AppRoot {
+
+  handleChange = (ev: CustomEvent) => {
+    console.log('handled by onChange, count: ' + ev.detail);
+  };
+
+  handleOk = (ev: CustomEvent<{ message: string }>) => {
+    console.log('handled by onOk, message: ' + ev.detail.message);
+  };
 
   render() {
     return (
@@ -15,12 +23,12 @@ export class AppRoot {
         </header>
 
         <main>
-          <stencil-router>
-            <stencil-route-switch scrollTopOffset={0}>
-              <stencil-route url='/' component='app-home' exact={true} />
-              <stencil-route url='/profile/:name' component='app-profile' />
-            </stencil-route-switch>
-          </stencil-router>
+          <div class="container">
+            <p>inside stencil</p>
+            <stencil-counter class="in" name={10} onChange={this.handleChange}></stencil-counter>
+            <standard-counter class="in" name="10" onChange={this.handleChange}></standard-counter>
+            <my-component name="Stencil" repeat={5} obj={{ name: 'foo', id: 300 }} onOk={this.handleOk}></my-component>
+          </div>
         </main>
       </div>
     );

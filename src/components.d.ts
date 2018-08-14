@@ -25,77 +25,7 @@ declare global {
   interface HTMLAttributes {}
 }
 
-import '@stencil/router';
-import '@stencil/state-tunnel';
-
-import {
-  MatchResults,
-} from '@stencil/router';
-
-declare global {
-
-  namespace StencilComponents {
-    interface AppHome {
-
-    }
-  }
-
-  interface HTMLAppHomeElement extends StencilComponents.AppHome, HTMLStencilElement {}
-
-  var HTMLAppHomeElement: {
-    prototype: HTMLAppHomeElement;
-    new (): HTMLAppHomeElement;
-  };
-  interface HTMLElementTagNameMap {
-    'app-home': HTMLAppHomeElement;
-  }
-  interface ElementTagNameMap {
-    'app-home': HTMLAppHomeElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'app-home': JSXElements.AppHomeAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AppHomeAttributes extends HTMLAttributes {
-
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface AppProfile {
-      'match': MatchResults;
-    }
-  }
-
-  interface HTMLAppProfileElement extends StencilComponents.AppProfile, HTMLStencilElement {}
-
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
-  };
-  interface HTMLElementTagNameMap {
-    'app-profile': HTMLAppProfileElement;
-  }
-  interface ElementTagNameMap {
-    'app-profile': HTMLAppProfileElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'app-profile': JSXElements.AppProfileAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface AppProfileAttributes extends HTMLAttributes {
-      'match'?: MatchResults;
-    }
-  }
-}
+import '@adwd/custom-elements-examples';
 
 
 declare global {
@@ -126,6 +56,42 @@ declare global {
   namespace JSXElements {
     export interface AppRootAttributes extends HTMLAttributes {
 
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface StencilCounter {
+      'name': number;
+    }
+  }
+
+  interface HTMLStencilCounterElement extends StencilComponents.StencilCounter, HTMLStencilElement {}
+
+  var HTMLStencilCounterElement: {
+    prototype: HTMLStencilCounterElement;
+    new (): HTMLStencilCounterElement;
+  };
+  interface HTMLElementTagNameMap {
+    'stencil-counter': HTMLStencilCounterElement;
+  }
+  interface ElementTagNameMap {
+    'stencil-counter': HTMLStencilCounterElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'stencil-counter': JSXElements.StencilCounterAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface StencilCounterAttributes extends HTMLAttributes {
+      'name'?: number;
+      'onChange'?: (event: CustomEvent<number>) => void;
+      'onDecrease'?: (event: CustomEvent<number>) => void;
+      'onIncrease'?: (event: CustomEvent<number>) => void;
     }
   }
 }

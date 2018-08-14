@@ -15,10 +15,89 @@
   <link rel="apple-touch-icon" href="/assets/icon/icon.png">
   <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
   <link rel="manifest" href="/manifest.json">
+  <!-- load custom elements built by stencil -->
+  <script src="https://unpkg.com/@adwd/custom-elements-examples@0.0.2/dist/mycomponent.js"></script>
+  <script type="module">
+    // Create a custom element by standard API
+    class StandardCounter extends HTMLElement {
+      constructor() {
+        super();
+        this.count = 0;
+
+        const shadow = this.attachShadow({ mode: 'open' });
+        const div = document.createElement('div');
+        shadow.appendChild(div);
+
+        const title = document.createElement('p');
+        title.textContent = 'standard counter';
+        div.appendChild(title);
+
+        this.counter = document.createElement('p');
+        this.counter.textContent = this.count;
+        div.appendChild(this.counter);
+
+        const incButton = document.createElement('button');
+        incButton.textContent = 'count up';
+        incButton.addEventListener('click', (ev) => {
+          this.setCount(this.count + 1);
+        });
+        div.appendChild(incButton);
+        const decButton = document.createElement('button');
+        decButton.textContent = 'count down';
+        decButton.addEventListener('click', (ev) => {
+          this.setCount(this.count - 1);
+        });
+        div.appendChild(decButton);
+
+        this.setCount.bind(this);
+      }
+
+      static get observedAttributes() {
+        return ['name'];
+      }
+
+      attributeChangedCallback(attr, oldValue, newValue) {
+        console.log(`standard-counter typeof name: ${typeof newValue}, value: ${newValue}`);
+      }
+
+      setCount(count) {
+        this.count = count;
+        this.counter.textContent = this.count;
+        this.dispatchEvent(new CustomEvent('change', { detail: this.count }));
+      }
+    }
+
+    customElements.define('standard-counter', StandardCounter);
+  </script>
 </head>
 <body>
 
   <app-root></app-root>
+
+  <div>
+    <p>outside stencil</p>
+    <standard-counter class="out" onchange="console.log('change')"></standard-counter>
+    <stencil-counter class="out" name="10"></stencil-counter>
+
+    <my-component name="Stencil" repeat="3" onOk="() => console.log('ok')"></my-component>
+  </div>
+
+
+  <script>
+    window.addEventListener("load", (event) => {
+      const listener = ev => console.log('handled by eventListener, count: ', ev.detail);
+
+      document.querySelector('standard-counter.out').addEventListener('change', listener);
+      document.querySelector('stencil-counter.out').addEventListener('change', listener);
+
+      const app = document.querySelector('app-root');
+
+      app.shadowRoot.querySelector('stencil-counter.in').addEventListener('change', listener);
+      app.shadowRoot.querySelector('standard-counter.in').addEventListener('change', listener);
+
+      document.querySelector('my-component').addEventListener('ok', ev => console.log('handled by eventListener, message:', ev.detail.message));
+    });
+  </script>
 
 </body>
 </html>
