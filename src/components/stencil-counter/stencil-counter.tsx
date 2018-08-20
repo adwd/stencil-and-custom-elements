@@ -36,7 +36,7 @@ export class StencilCounter {
           <button onClick={this.onClickCountDown}>
             count down
           </button>
-          <FnCompSample name="HelloFnCmp"></FnCompSample>
+          <FnCompSample name="HelloFnCmp" onClick={() => console.log('click')}></FnCompSample>
       </div>
     );
   }
