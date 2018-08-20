@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, State, Prop } from '@stencil/core';
-
+import { FnCompSample } from '../fn-comp-sample/fn-comp-sample';
 
 @Component({
   tag: 'stencil-counter',
@@ -36,6 +36,7 @@ export class StencilCounter {
           <button onClick={this.onClickCountDown}>
             count down
           </button>
+          <FnCompSample name="HelloFnCmp"></FnCompSample>
       </div>
     );
   }

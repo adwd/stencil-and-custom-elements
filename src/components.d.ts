@@ -90,8 +90,6 @@ declare global {
     export interface StencilCounterAttributes extends HTMLAttributes {
       'name'?: number;
       'onChange'?: (event: CustomEvent<number>) => void;
-      'onDecrease'?: (event: CustomEvent<number>) => void;
-      'onIncrease'?: (event: CustomEvent<number>) => void;
     }
   }
 }
