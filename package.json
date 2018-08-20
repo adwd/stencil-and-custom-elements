@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@adwd/custom-elements-examples": "0.0.2",
-    "@stencil/core": "^0.11.0",
+    "@stencil/core": "^0.11.4",
     "@stencil/router": "^0.2.5",
     "request": "^2.88.0"
   },
