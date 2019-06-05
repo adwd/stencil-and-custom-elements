@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'app-root',
@@ -27,7 +27,7 @@ export class AppRoot {
             <p>inside stencil</p>
             <stencil-counter class="in" name={10} onChange={this.handleChange}></stencil-counter>
             <standard-counter class="in" name="10" onChange={this.handleChange}></standard-counter>
-            <my-component name="Stencil" repeat={5} obj={{ name: 'foo', id: 300 }} onOk={this.handleOk}></my-component>
+            <my-component name="Stencil" repeat={5} onOk={this.handleOk}></my-component>
           </div>
         </main>
       </div>

@@ -1,4 +1,4 @@
-import { FunctionalComponent } from "@stencil/core";
+import { FunctionalComponent, h } from "@stencil/core";
 
 export const FnCompSample: FunctionalComponent<{ name: string, onClick: () => void }> = (props) => (
   <div>

@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, State, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, State, Prop, h } from '@stencil/core';
 import { FnCompSample } from '../fn-comp-sample/fn-comp-sample';
 
 @Component({
